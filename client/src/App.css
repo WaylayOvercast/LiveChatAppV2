@@ -7,8 +7,9 @@
 }
 
 .App {
+  position: absolute;
   width: 100%;
-  height: 70vh;
+  height: 100%;
   background: rgb(53, 53, 53);
   color: #ffffff;
   box-shadow: 0rem 5rem 10rem 15rem rgb(53, 53, 53);
@@ -17,6 +18,11 @@
   display: grid;
   place-items: center;
 }
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0%;
   padding: 0%;
@@ -24,24 +30,24 @@ body {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
 .callbutton {
-  width: 3rem;
-  height: 3rem;
-  background-color: red;
-  display: flex;
-  justify-self: flex-start;
+
 }
 
 #call-window {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(54,54,54,0) 0%, rgb(39, 39, 39) 50%, rgba(54,54,54,0) 100%);
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(5, 100px);
-  column-gap: 2rem;
-  row-gap: 1rem;
+  height: 20%;
+  position: absolute;
+  background-color: #266429;
+  box-shadow: .8rem 1.5rem 1.5rem .5rem #00000070 inset;
+  display: flex;
+  flex-wrap: wrap;
+  align-self:flex-start;
+  align-content:center;
 }
 video {
+  margin:0% 2% 0% 2%; 
+  border-radius: 15%;
+  box-shadow: .7rem 1rem 1.2rem .5rem #00000070;
   width: 7.5rem;
   height: 7.5rem;
   object-fit: cover;
@@ -94,8 +100,8 @@ video {
 }
 
 .chat-window {
-  width: 35rem;
-  height: 35rem;
+  width: 60vw;
+  height: 70vh;
 }
 
 .chat-window p {
@@ -111,6 +117,7 @@ video {
 }
 .chat-window .chat-head p {
   display: flex;
+  justify-content:center ;
   font-family: sans-serif;
   font-size: 1.2rem;
   padding:.8rem 1.5rem 0 1rem;
@@ -126,8 +133,9 @@ video {
   background-color: #266829;
 }
 .room-tag p{
-  box-shadow: inset 1rem .5rem .5rem rgba(0, 0, 0, 0.273);
-  border-radius: 1rem 0 0 1rem;
+  min-width: 5vw;
+  box-shadow: inset .5rem .5rem .5rem rgba(0, 0, 0, 0.273);
+  border-radius: 1rem 0rem 1rem 0rem;
   background-color: #1b4b1e;
 }
 
@@ -141,8 +149,7 @@ video {
 }
 .chat-window .chat-mid .message-container {
   width: 100%;
-  height: 100%;
-  
+  height: 50%;
 }
 .chat-mid{
   overflow-y: scroll;
@@ -164,27 +171,32 @@ video {
 }
 .chat-window .chat-mid .message {
   height: auto;
-  padding: .6rem;
+  padding: .6rem .3rem .3rem .6rem;
   display: flex;
 }
 
 .chat-window .chat-mid .message .message-content {
   width: auto;
   height: auto;
-  min-height: 2.5rem;
-  max-width: 20rem;
+  min-height: 1rem;
+  max-width: 25vw;
+  min-width: 1vw;
   background-color: #43a047;
+  box-shadow: .2rem .2rem .5rem .01rem rgba(8, 8, 8, 0.644);
   border-radius: .3rem;
   color: white;
   display: flex;
   align-items: center;
-  margin-right: .3rem;
-  margin-left: .3rem;
-  padding-right: .4rem;
-  padding-left: .4rem;
+  margin: .4rem 1.6rem .4rem 1.6rem;
+  padding: .4rem .2rem .4rem .2rem;
   overflow-wrap: break-word;
   word-break: break-word;
 }
+
+.message-content p {
+  padding:0rem .6rem;
+}
+
 
 #you {
   justify-content: flex-start;
@@ -196,8 +208,7 @@ video {
 
 #you .message-meta {
   justify-content: flex-start;
-  margin-left: 0.2rem;
-  font-size: .9rem;
+  font-size: .8rem;
   color: rgb(46, 46, 46);
 }
 
@@ -214,11 +225,11 @@ video {
   justify-content: flex-end;
   margin-right: 0.2rem;
   font-size: .9rem;
-  color: rgb(46, 46, 46);
+  color: rgb(70, 70, 70);
 }
 
 .message-meta #author {
-  margin-left: .6rem;
+  padding-left: .6rem;
   font-weight: bold;
 }
 
@@ -228,17 +239,18 @@ video {
 }
 
 .chat-window .chat-foot {
-  height: 4rem;
+  height: 8%;
+  width: 60vw;
   outline: .3rem solid #2e7d32;
+  margin-top: 1.5%;
   border-radius: .5rem;
-  margin-top: 6rem;
-  border-top: none;
   display: flex;
 }
 
 .chat-window .chat-foot input {
   height: 100%;
-  flex: 85%;
+  width:50vw;
+  min-width: 6rem;
   border: 0;
   padding: 0 0.7em;
   font-size: 1.3rem;
@@ -254,6 +266,8 @@ video {
   display: grid;
   place-items: center;
   cursor: pointer;
+  width: 10vw;
+  min-width: 6rem;
   flex: 15%;
   height: 100%;
   background: transparent;
