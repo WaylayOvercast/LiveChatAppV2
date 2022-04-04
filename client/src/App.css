@@ -1,62 +1,65 @@
-#root, html{
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+
+html, body, #root{
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.App {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgb(53, 53, 53);
-  color: #ffffff;
-  box-shadow: 0rem 5rem 10rem 15rem rgb(53, 53, 53);
-  font-family: "Open Sans", sans-serif;
-  text-align: center;
-  display: grid;
-  place-items: center;
-}
-
-html::-webkit-scrollbar {
-  display: none;
-}
-
-body {
+  background-color: #ffffff;
   margin: 0%;
   padding: 0%;
 }
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  margin: 0%;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background-color: #383838;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  place-items: center;
+}
 
 .callbutton {
-
+  
+}
+.chatroom {
+  background-color: red;
+  display: flex;
+  justify-content: center;
 }
 
 #call-window {
   width: 100%;
-  height: 20%;
-  position: absolute;
-  background-color: #266429;
-  box-shadow: .8rem 1.5rem 1.5rem .5rem #00000070 inset;
+  align-self: flex-start;
   display: flex;
+  align-items: center;
+  height: 10rem;
+  padding-bottom: .5rem;
   flex-wrap: wrap;
-  align-self:flex-start;
-  align-content:center;
+  align-items: flex-start;
+  background-color: #222222;
+  box-shadow: 0rem 0rem 1rem 1rem #0a0a0a65;
 }
+
 video {
-  margin:0% 2% 0% 2%; 
-  border-radius: 15%;
-  box-shadow: .7rem 1rem 1.2rem .5rem #00000070;
-  width: 7.5rem;
-  height: 7.5rem;
+  border-radius: 1.3rem;
+  border: .2rem solid #215c24; 
+  margin: 1% 0 0 1%;
+  width: 8rem;
+  height: 8rem;
   object-fit: cover;
+  box-shadow: .5rem .5rem .8rem .1rem #00000091;
 }
 
 .joinChatContainer {
   display: flex;
+  margin-top: 15%;
   flex-direction: column;
   padding: 2rem 2rem 5rem 2rem;
+  box-shadow: 1rem 1rem 1rem .5rem rgb(32, 32, 32);
   border-radius: 2rem;
   background-color: #215c24;
   align-items: center;
@@ -71,25 +74,31 @@ video {
   margin-bottom: 1rem;
 }
 .joinChatContainer input {
-  width: 60%;
+  box-shadow: -.2rem -.2rem .5rem .2rem rgba(10, 10, 10, 0.521) inset;
+  width: 17.5rem;
   height: 2rem;
   margin: .5rem;
   border: .2rem solid #43a047;
   border-radius: 1rem;
-  color: rgb(109, 109, 109);
+  color: rgb(90, 90, 90);
   padding: .5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
+.joinChatContainer input:focus { 
+  outline: none;
+}
+
 .joinChatContainer button {
-  width: 100%;
+  box-shadow: .5rem .7rem .6rem .3rem rgba(10, 10, 10, 0.336);
+  width: 17.5rem;
   height: 3.1rem;
   margin: .5rem;
   border: none;
   border-radius: 1rem;
   padding: .5rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   background: #43a047;
   color: #fff;
   cursor: pointer;
@@ -100,8 +109,9 @@ video {
 }
 
 .chat-window {
-  width: 60vw;
-  height: 70vh;
+  margin-top: 7vh;
+  width: 50vw;
+  height: 60%;
 }
 
 .chat-window p {
@@ -117,7 +127,6 @@ video {
 }
 .chat-window .chat-head p {
   display: flex;
-  justify-content:center ;
   font-family: sans-serif;
   font-size: 1.2rem;
   padding:.8rem 1.5rem 0 1rem;
@@ -133,9 +142,8 @@ video {
   background-color: #266829;
 }
 .room-tag p{
-  min-width: 5vw;
-  box-shadow: inset .5rem .5rem .5rem rgba(0, 0, 0, 0.273);
-  border-radius: 1rem 0rem 1rem 0rem;
+  box-shadow: inset 1rem .5rem .5rem rgba(0, 0, 0, 0.273);
+  border-radius: 1rem 0 0 1rem;
   background-color: #1b4b1e;
 }
 
@@ -149,54 +157,50 @@ video {
 }
 .chat-window .chat-mid .message-container {
   width: 100%;
-  height: 50%;
+  height: 100%;
+  
 }
 .chat-mid{
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .chat-mid::-webkit-scrollbar-thumb {
-  background-color: #c4c2c29c;
-  -webkit-box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.273);
+  background-color: #b1b1b19c;
+  -webkit-box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.212);
   border-radius: 1rem;
 }
 .chat-mid::-webkit-scrollbar{
   width: .8rem;
-	-webkit-box-shadow: inset -2px -2px 10px rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset -2px -2px 10px rgba(0, 0, 0, 0.514);
 	border-radius: 1rem;
-	background-color: #f7f3f31f;
+	background-color: #f7f3f3f1;
 }
 .chat-window .chat-mid .message-container::-webkit-scrollbar {
   display: none;
 }
 .chat-window .chat-mid .message {
   height: auto;
-  padding: .6rem .3rem .3rem .6rem;
+  padding: .6rem;
   display: flex;
 }
 
 .chat-window .chat-mid .message .message-content {
   width: auto;
   height: auto;
-  min-height: 1rem;
-  max-width: 25vw;
-  min-width: 1vw;
+  min-height: 2.5rem;
+  max-width: 20rem;
   background-color: #43a047;
-  box-shadow: .2rem .2rem .5rem .01rem rgba(8, 8, 8, 0.644);
   border-radius: .3rem;
   color: white;
   display: flex;
   align-items: center;
-  margin: .4rem 1.6rem .4rem 1.6rem;
-  padding: .4rem .2rem .4rem .2rem;
+  margin-right: .3rem;
+  margin-left: .3rem;
+  padding-right: .4rem;
+  padding-left: .4rem;
   overflow-wrap: break-word;
   word-break: break-word;
 }
-
-.message-content p {
-  padding:0rem .6rem;
-}
-
 
 #you {
   justify-content: flex-start;
@@ -208,7 +212,8 @@ video {
 
 #you .message-meta {
   justify-content: flex-start;
-  font-size: .8rem;
+  margin-left: 0.2rem;
+  font-size: .9rem;
   color: rgb(46, 46, 46);
 }
 
@@ -225,11 +230,11 @@ video {
   justify-content: flex-end;
   margin-right: 0.2rem;
   font-size: .9rem;
-  color: rgb(70, 70, 70);
+  color: rgb(46, 46, 46);
 }
 
 .message-meta #author {
-  padding-left: .6rem;
+  margin-left: .6rem;
   font-weight: bold;
 }
 
@@ -239,18 +244,18 @@ video {
 }
 
 .chat-window .chat-foot {
-  height: 8%;
-  width: 60vw;
+  height: 10%;
   outline: .3rem solid #2e7d32;
-  margin-top: 1.5%;
   border-radius: .5rem;
+  margin-top: 1rem;
+  border-top: none;
   display: flex;
 }
 
 .chat-window .chat-foot input {
   height: 100%;
-  width:50vw;
-  min-width: 6rem;
+  width: 100%;
+  flex: 85%;
   border: 0;
   padding: 0 0.7em;
   font-size: 1.3rem;
@@ -266,8 +271,6 @@ video {
   display: grid;
   place-items: center;
   cursor: pointer;
-  width: 10vw;
-  min-width: 6rem;
   flex: 15%;
   height: 100%;
   background: transparent;

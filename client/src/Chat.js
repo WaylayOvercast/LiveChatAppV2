@@ -96,10 +96,15 @@ function Chat({socket, user, room}){
         }
     };
 
+    // <div className='callbutton' onClick={()=> setVoiceChat(!voiceChat)}> {/* needs work */}
+    //     </div>
+    //         <div id='call-window'>
+    //         </div>
+
     return (
         <>
-        <div className='callbutton' onClick={()=> setVoiceChat(!voiceChat)}></div>
-            <div id='call-window'></div>
+        <div id='call-window'>         
+        </div>
         <div className='chat-window'>
             <div className='chat-head'>
                 <div className='room-tag'><p>{room}</p></div>
