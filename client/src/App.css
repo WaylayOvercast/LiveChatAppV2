@@ -13,7 +13,7 @@ html, body, #root{
   display: flex;
   flex-direction: column;
   margin: 0%;
-  width: 100%;
+  padding: 0%;
   height: 100%;
   color: #ffffff;
   background-color: #383838;
@@ -23,7 +23,9 @@ html, body, #root{
 }
 
 .callbutton {
-  
+  background-color: red;
+  width: 10%;
+  height: 10%;
 }
 .chatroom {
   background-color: red;
@@ -33,14 +35,14 @@ html, body, #root{
 
 #call-window {
   width: 100%;
-  align-self: flex-start;
   display: flex;
-  align-items: center;
-  height: 10rem;
-  padding-bottom: .5rem;
+  height: 5.5em;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-content: center;
+  justify-content: flex-start;
   background-color: #222222;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
   box-shadow: 0rem 0rem 1rem 1rem #0a0a0a65;
 }
 
@@ -48,17 +50,17 @@ video {
   border-radius: 1.3rem;
   border: .2rem solid #215c24; 
   margin: 1% 0 0 1%;
-  width: 8rem;
-  height: 8rem;
+  width: 5em;
+  height: 5em;
   object-fit: cover;
   box-shadow: .5rem .5rem .8rem .1rem #00000091;
 }
 
 .joinChatContainer {
   display: flex;
-  margin-top: 15%;
+  margin-top: 5%;
   flex-direction: column;
-  padding: 2rem 2rem 5rem 2rem;
+  padding: 1rem 1rem 3rem 1rem;
   box-shadow: 1rem 1rem 1rem .5rem rgb(32, 32, 32);
   border-radius: 2rem;
   background-color: #215c24;
@@ -68,15 +70,15 @@ video {
 
 .joinChatContainer h3 {
   background-color: #3a723e;
-  padding: .5rem 2rem .5rem 2rem;
+  padding: .5rem 1rem .5rem 1rem;
   border-radius: .5rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 .joinChatContainer input {
   box-shadow: -.2rem -.2rem .5rem .2rem rgba(10, 10, 10, 0.521) inset;
-  width: 17.5rem;
-  height: 2rem;
+  width: 15.5rem;
+  height: 1.5rem;
   margin: .5rem;
   border: .2rem solid #43a047;
   border-radius: 1rem;
@@ -109,7 +111,6 @@ video {
 }
 
 .chat-window {
-  margin-top: 7vh;
   width: 50vw;
   height: 60%;
 }

@@ -18,9 +18,9 @@ in order to support text chat at the same time.</h7>
 
 * () -need fix for refresh reseting entire chat app (architecture issue).
 
-* (?) -possible that i could add user auth and an account system along with saved groups/rooms(will need DB on node).
+* (?) -possible that i could add user auth and an account system along with saved groups/rooms.
 
-* () -need overall styling badly lol.
+* () -need overall styling updates.
 
 * () -would really like to create a push to talk/key binding system or even a audio level filter 
 
