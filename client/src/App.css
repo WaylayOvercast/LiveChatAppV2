@@ -110,6 +110,38 @@ video {
   background: #2e7d32;
 }
 
+.error-box {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  background-color: rgba(255, 6, 6, 0.295);
+  backdrop-filter: blur(5px);
+  width: 20%;
+  min-width: fit-content;
+  height: fit-content;
+  margin-top: 20rem;
+  padding: 0 .5rem 0 .5rem;
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 2rem .3rem rgba(0, 0, 0, 0.356);
+  animation: fade 0.3s ease;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+}
+
+.error-msg {
+  color: rgb(211, 211, 211);
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.397);
+  padding: 1%;
+  border-radius: 1rem;
+}
+
 .chat-window {
   width: 50vw;
   height: 60%;
@@ -118,6 +150,7 @@ video {
 .chat-window p {
   margin: 0;
 }
+
 .chat-window .chat-head {
   height: 3.6rem;
   border-radius: .5rem .5rem 0rem 0rem;
@@ -126,6 +159,7 @@ video {
   position: relative;
   cursor: pointer;
 }
+
 .chat-window .chat-head p {
   display: flex;
   font-family: sans-serif;
@@ -133,8 +167,8 @@ video {
   padding:.8rem 1.5rem 0 1rem;
   color: rgb(255, 255, 255);
   font-weight: 700;
-  
 }
+
 .room-tag{
   display: flex;
   width: 100%;
@@ -142,6 +176,7 @@ video {
   border-radius: 1rem;
   background-color: #266829;
 }
+
 .room-tag p{
   box-shadow: inset 1rem .5rem .5rem rgba(0, 0, 0, 0.273);
   border-radius: 1rem 0 0 1rem;
@@ -156,29 +191,34 @@ video {
   background: #fff;
   position: relative;
 }
+
 .chat-window .chat-mid .message-container {
   width: 100%;
   height: 100%;
-  
 }
+
 .chat-mid{
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
 .chat-mid::-webkit-scrollbar-thumb {
   background-color: #b1b1b19c;
   -webkit-box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.212);
   border-radius: 1rem;
 }
+
 .chat-mid::-webkit-scrollbar{
   width: .8rem;
 	-webkit-box-shadow: inset -2px -2px 10px rgba(0, 0, 0, 0.514);
 	border-radius: 1rem;
 	background-color: #f7f3f3f1;
 }
+
 .chat-window .chat-mid .message-container::-webkit-scrollbar {
   display: none;
 }
+
 .chat-window .chat-mid .message {
   height: auto;
   padding: .6rem;

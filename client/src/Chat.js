@@ -40,20 +40,22 @@ function Chat({socket, user, room}){
             host: '/',
             port: `8080`
         });
-        thisPeer.on('open', peerID => {
-            socket.emit('join-call', peerID)
+        thisPeer.on('open', peerId => {
+            const currentUser = { peerId: peerId, username: user }
+            socket.emit('join-call', currentUser)
         })
         thisPeer.on('call', call => {
             call.answer(stream)
             const video = document.createElement('video')
             call.on('stream', inboundStream => {
+                console.log('INBOUND', inboundStream)
                 addVideoStream(video, inboundStream, callWindow)
                 console.log('add pre-existing stream line 53')
             })
         })
-        socket.on('user-joined-call', peerID => {
+        socket.on('user-joined-call', peer => {
             console.log('user joined call line 53')
-            connectToNewUser(peerID, stream, thisPeer, callWindow)
+            connectToNewUser(peer, stream, thisPeer, callWindow)
         })
     }
 
@@ -66,9 +68,11 @@ function Chat({socket, user, room}){
         console.log('APPEND')
     }
 
-    const connectToNewUser = (userId, outboundStream, thisPeer, callWindow) => {
-        const call = thisPeer.call(userId, outboundStream)
+    const connectToNewUser = (otherUser, outboundStream, currentUser, callWindow) => {
+        console.log(otherUser)
+        const call = currentUser.call(otherUser.peerId, outboundStream)
         const video = document.createElement('video')
+        video.innerText = otherUser.username
         console.log('create video element line 69', video)
         call.on('stream', inboundStream => {
             addVideoStream(video, inboundStream, callWindow)
@@ -95,11 +99,6 @@ function Chat({socket, user, room}){
             setMsg('')
         }
     };
-
-    // <div className='callbutton' onClick={()=> setVoiceChat(!voiceChat)}> {/* needs work */}
-    //     </div>
-    //         <div id='call-window'>
-    //         </div>
 
     return (
         <>
