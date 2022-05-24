@@ -17,21 +17,29 @@ httpserver.listen(port, () => {
 });
 
 
-
-
 io.on('connection', socket => {
     console.log(`User connected with socket_id:${socket.id}`);
     
-    socket.on('join_room', (room, socket_id) => {                                   //------------------------------------------------//
-        console.log(`User with socket_id:${socket_id} Joined Room:${room}`);       // declaring socket connections and functionality //
-        socket.join(room);                                                        //------------------------------------------------//
-        socket.to(room).emit('user-joined-room', socket_id);
+    socket.on('join_room', (room, socket_id) => {                                   
+        console.log(`User with socket_id:${socket_id} Joined Room:${room}`);
+        
+        try {  // if room exists, check to make sure no more than 3 are in it before joining
+            const size = io.sockets.adapter.rooms.get(room).size
+            if (size <= 4) {
+                socket.join(room);                                                       
+                socket.to(room).emit('user-joined-room', socket_id);
+            } else {
+                socket.emit('room_full')
+            }
+        } catch { // if room does not exist, create it.
+            socket.join(room)
+        }         
         
         socket.on('join-call', peer => {
             socket.to(room).emit('user-joined-call', peer)
         })
         socket.on('handle_msg', (msg) => {
-            socket.to(msg.room).emit('msg_client', (msg));
+            socket.to(msg.room).emit('msg_client', msg);
         })
         socket.on('disconnect', () => {
             socket.to(room).emit('user-has-left', socket_id)

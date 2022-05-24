@@ -187,7 +187,7 @@ video {
   box-shadow: inset 1rem .2rem 1rem rgba(0, 0, 0, 0.273);
   height: 90%;
   border-radius: .3rem;
-  outline: .25rem solid #2e7d32;
+  outline: .3rem solid #2e7d32;
   background: #fff;
   position: relative;
 }
@@ -211,7 +211,7 @@ video {
 .chat-mid::-webkit-scrollbar{
   width: .8rem;
 	-webkit-box-shadow: inset -2px -2px 10px rgba(0, 0, 0, 0.514);
-	border-radius: 1rem;
+	border-radius: .2rem;
 	background-color: #f7f3f3f1;
 }
 
@@ -221,7 +221,7 @@ video {
 
 .chat-window .chat-mid .message {
   height: auto;
-  padding: .6rem;
+  padding: .4rem;
   display: flex;
 }
 
@@ -253,9 +253,9 @@ video {
 
 #you .message-meta {
   justify-content: flex-start;
-  margin-left: 0.2rem;
-  font-size: .9rem;
-  color: rgb(46, 46, 46);
+  margin-left: 0.3rem;
+  font-size: .7rem;
+  color: rgb(114, 113, 113);
 }
 
 #other {
@@ -269,9 +269,9 @@ video {
 
 #other .message-meta {
   justify-content: flex-end;
-  margin-right: 0.2rem;
-  font-size: .9rem;
-  color: rgb(46, 46, 46);
+  margin-right: 0.4rem;
+  font-size: .7rem;
+  color: rgb(114, 113, 113);
 }
 
 .message-meta #author {
@@ -293,7 +293,12 @@ video {
   display: flex;
 }
 
-.chat-window .chat-foot input {
+.chat-window .chat-foot .chat-form {
+  display: flex;
+  width: 100%;
+} 
+
+.chat-window .chat-foot .chat-form .chat-input {
   height: 100%;
   width: 100%;
   flex: 85%;
@@ -306,13 +311,13 @@ video {
   font-family: "Open Sans", sans-serif;
 }
 
-.chat-window .chat-foot button {
+.chat-window .chat-foot .chat-form .send-msg {
   border: 0;
   border-left: .25rem solid #2e7d32;
   display: grid;
   place-items: center;
   cursor: pointer;
-  flex: 15%;
+  padding: 0 3% 0 3%;
   height: 100%;
   background: transparent;
   outline: none;
@@ -321,7 +326,7 @@ video {
   transition: all .3s ease-in-out; 
 }
 
-.chat-window .chat-foot button:hover {
+.chat-window .chat-foot .send-msg:hover {
   background-color: #2e7d32;
   transition: all .3s ease-in;
 }

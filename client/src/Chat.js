@@ -69,7 +69,6 @@ function Chat({socket, user, room}){
     }
 
     const connectToNewUser = (otherUser, outboundStream, currentUser, callWindow) => {
-        console.log(otherUser)
         const call = currentUser.call(otherUser.peerId, outboundStream)
         const video = document.createElement('video')
         video.innerText = otherUser.username
@@ -83,7 +82,8 @@ function Chat({socket, user, room}){
         })
     }
 
-    const sendMsg = async () => {
+    const sendMsg = async (e) => {
+        e.preventDefault()
         if((msg !== '' && msg !== undefined)){
             const msgInfo = {
                 room: room,
@@ -126,15 +126,22 @@ function Chat({socket, user, room}){
                 })}
             </div>
             <div className='chat-foot'>
-                <input 
-                    type='text' 
-                    placeholder = '...'
-                    value={msg}
-                    onChange={(e) => {
-                        setMsg(e.target.value)
-                    }}
-                />
-                <button onClick={sendMsg}>Send</button>
+                <form  className='chat-form' onSubmit={(e) => sendMsg(e)}>
+                    <input 
+                        className='chat-input'
+                        type='text' 
+                        placeholder = '...'
+                        value={msg}
+                        onChange={(e) => {
+                            setMsg(e.target.value)
+                        }}
+                    />
+                    <button
+                        className='send-msg'
+                        type='submit'>
+                            Send
+                    </button>
+                </form>
             </div>
         </div>
         </>
