@@ -6,9 +6,10 @@ function Chat({socket, user, room}){
     const [msg, setMsg] = useState('');
     const [chat, setChat] = useState([]);
     const [voiceChat, setVoiceChat] = useState(false);
-
+    const [peers, setPeers] = useState([])
 
     useEffect(() => {
+
         socket.on('user-joined-room', socket_id => {
             console.log(`User joined room with id:${socket_id}`)
         })
@@ -17,6 +18,11 @@ function Chat({socket, user, room}){
         })
         socket.on('user-has-left', socket_id => {
             console.log(`User left room with id:${socket_id}`)
+            console.log('SOCKET_ID', socket_id)
+            console.log(peers[socket_id]);
+            if(peers[socket_id]) {
+                peers[socket_id].close()
+            }
         })
 
     },[])
@@ -36,7 +42,7 @@ function Chat({socket, user, room}){
     },[])
     
     const initStreamchat = (stream, callWindow) => {
-        const thisPeer = new Peer(undefined, {
+        const thisPeer = new Peer(socket.id, {
             host: '/',
             port: `8080`
         });
@@ -52,6 +58,7 @@ function Chat({socket, user, room}){
                 addVideoStream(video, inboundStream, callWindow)
                 console.log('add pre-existing stream line 53')
             })
+            
         })
         socket.on('user-joined-call', peer => {
             console.log('user joined call line 53')
@@ -78,8 +85,11 @@ function Chat({socket, user, room}){
             console.log('add video stream line 72')
         })
         call.on('close', () => {
+            console.log('CLOSE, 82')
             video.remove()
         })
+        console.log('USER JOINED', otherUser.peerId)
+        setPeers((peers) => peers[otherUser.peerId] = call) 
     }
 
     const sendMsg = async (e) => {
