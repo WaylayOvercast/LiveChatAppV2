@@ -20,14 +20,17 @@ httpserver.listen(port, () => {
 io.on('connection', socket => {
     console.log(`User connected with socket_id:${socket.id}`);
     
-    socket.on('join_room', (room, socket_id) => {                                   
+    socket.on('join_room', async (room, socket_id) => {                                   
         console.log(`User with socket_id:${socket_id} Joined Room:${room}`);
         
         try {  // if room exists, check to make sure no more than 3 are in it before joining
             const size = io.sockets.adapter.rooms.get(room).size
+            const sockets = Array.from(await io.in(room).allSockets())
             if (size <= 4) {
                 socket.join(room);                                                       
                 socket.to(room).emit('user-joined-room', socket_id);
+                // tell new user who all is in the room
+                socket.to(socket_id).emit('update-users', sockets)
             } else {
                 socket.emit('room_full')
             }

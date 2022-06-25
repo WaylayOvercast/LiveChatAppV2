@@ -7,27 +7,41 @@ function Chat({socket, user, room}){
     const [chat, setChat] = useState([]);
     const [voiceChat, setVoiceChat] = useState(false);
     const [peers, setPeers] = useState([])
+    
 
     useEffect(() => {
 
         socket.on('user-joined-room', socket_id => {
             console.log(`User joined room with id:${socket_id}`)
-        })
+        });
+
         socket.on('msg_client', (msgInfo) => {
             setChat((chat) => [...chat, msgInfo])
-        })
+        });
+
         socket.on('user-has-left', socket_id => {
             console.log(`User left room with id:${socket_id}`)
-            console.log('SOCKET_ID', socket_id)
-            console.log(peers[socket_id]);
+            console.log('ISPEER?', peers[socket_id])
             if(peers[socket_id]) {
-                peers[socket_id].close()
+        
+                const leaving = peers[socket_id]
+                const staying = peers.filter( obj => obj.peer !== socket_id)
+                console.log('staying', staying)
+                leaving.close() // issue with closing another persons stream if they were first to join room, (something about state being set WIP)
+                
+                setPeers(staying)
+                
             }
-        })
+        });
 
     },[])
 
     useEffect(() => {
+        console.log('LOOK HERE', peers)
+    },[peers])
+
+    useEffect(() => {
+
         const callWindow = document.getElementById('call-window')
         const myCall = document.createElement('video')
         myCall.muted = true
@@ -36,60 +50,78 @@ function Chat({socket, user, room}){
             video: true,
             audio: true
         }).then( stream => {
+            
+            console.log(socket.id, stream)
             addVideoStream(myCall, stream, callWindow)
             initStreamchat(stream, callWindow)
-        })
+        });
+
     },[])
     
     const initStreamchat = (stream, callWindow) => {
+
         const thisPeer = new Peer(socket.id, {
             host: '/',
             port: `8080`
         });
+
         thisPeer.on('open', peerId => {
             const currentUser = { peerId: peerId, username: user }
             socket.emit('join-call', currentUser)
-        })
+        });
+
         thisPeer.on('call', call => {
             call.answer(stream)
             const video = document.createElement('video')
+
             call.on('stream', inboundStream => {
                 console.log('INBOUND', inboundStream)
                 addVideoStream(video, inboundStream, callWindow)
-                console.log('add pre-existing stream line 53')
             })
-            
-        })
+           console.log('CALLL', call)
+           setPeers((peers) => [...peers, peers[call.peer] = call]) // look into this as i think peers need to be set later on. 
+           console.log(peers)
+        });
+
         socket.on('user-joined-call', peer => {
             console.log('user joined call line 53')
             connectToNewUser(peer, stream, thisPeer, callWindow)
-        })
+        });
+
     }
 
     const addVideoStream = (video, stream, callWindow) => {
+
         video.srcObject = stream
         video.addEventListener('loadedmetadata', () => {
             video.play()
         })
+
         callWindow.append(video)
         console.log('APPEND')
     }
 
     const connectToNewUser = (otherUser, outboundStream, currentUser, callWindow) => {
+
         const call = currentUser.call(otherUser.peerId, outboundStream)
         const video = document.createElement('video')
+        
         video.innerText = otherUser.username
+
         console.log('create video element line 69', video)
+
         call.on('stream', inboundStream => {
             addVideoStream(video, inboundStream, callWindow)
             console.log('add video stream line 72')
         })
+
         call.on('close', () => {
             console.log('CLOSE, 82')
             video.remove()
         })
+
         console.log('USER JOINED', otherUser.peerId)
-        setPeers((peers) => peers[otherUser.peerId] = call) 
+        setPeers((peers) => [...peers, peers[otherUser.peerId] = call]) // this works, as shown in the object contains Options: _stream: MediaStream
     }
 
     const sendMsg = async (e) => {
