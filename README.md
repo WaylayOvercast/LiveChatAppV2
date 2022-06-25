@@ -14,13 +14,22 @@ in order to support text chat at the same time.</h7>
 
 <>====<> Current bugs and plans: <>====<>
 
-* () -need fix for user disconnect, frozen video remains on other users screen.
+* (1/2) -need fix for user disconnect, frozen video remains on other users screen.
+        
+        > about half of this has been fixed, users who leave will have their videos removed
+          from other users clients.. however if the user who left joined before the other,
+          the user who was last in will be stuck with a black window. 
+        
+        # (something about peer objects being set to state at the wrong time.)
 
 * () -need fix for refresh reseting entire chat app (architecture issue).
 
 * (?) -possible that i could add user auth and an account system along with saved groups/rooms.
 
-* () -need overall styling updates.
+* (3/4) -need overall styling updates.
+        
+        > for its purposes most styling has been changed to scale better, although i may 
+          go with another theme later down the line.
 
 * () -would really like to create a push to talk/key binding system or even a audio level filter 
 
